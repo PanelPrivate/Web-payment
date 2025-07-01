@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Style Payment Gateway</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://images.unsplash.com/photo-1633613286848-e6f43bbafb8d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            transition: all 0.5s ease;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ff79c6;
+            font-size: 2.5rem;
+            text-shadow: 0 0 10px rgba(255, 121, 198, 0.5);
+            position: relative;
+        }
+        
+        h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(90deg, #ff79c6, #bd93f9);
+            border-radius: 3px;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .payment-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 121, 198, 0.5);
+        }
+        
+        .payment-card img {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.3));
+        }
+        
+        .payment-card h3 {
+            margin-bottom: 15px;
+            color: #bd93f9;
+        }
+        
+        .payment-info {
+            background: rgba(0, 0, 0, 0.4);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 10px;
+            word-break: break-all;
+            font-size: 0.9rem;
+            border-left: 3px solid #ff79c6;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { border-left-color: #ff79c6; }
+            50% { border-left-color: #bd93f9; }
+            100% { border-left-color: #ff79c6; }
+        }
+        
+        .qris-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .qris-container img {
+            max-width: 250px;
+            border-radius: 10px;
+            border: 2px solid #bd93f9;
+            box-shadow: 0 0 20px rgba(189, 147, 249, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .qris-container img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(189, 147, 249, 0.5);
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .anime-character {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 150px;
+            opacity: 0.8;
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+        
+        .anime-character:hover {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            .payment-methods {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Payment Gateway</h1>
+        
+        <div class="payment-methods">
+            <div class="payment-card" onclick="copyToClipboard('0895321197390')">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg" alt="DANA">
+                <h3>DANA</h3>
+                <div class="payment-info">
+                    Nomor: 0895321197390<br>
+                    (Klik untuk menyalin)
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Gopay_logo.svg/1200px-Gopay_logo.svg.png" alt="GOPAY">
+                <h3>GOPAY</h3>
+                <div class="payment-info">
+                    Nomor: 0895321197390<br>
+                    (Klik untuk menyalin)
+                </div>
+            </div>
+            
+            <div class="payment-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Logo_ovo_purple.svg/1200px-Logo_ovo_purple.svg.png" alt="OVO">
+                <h3>OVO</h3>
+                <div class="payment-info">
+                    Nomor: 0895321197390<br>
+                    (Klik untuk menyalin)
+                </div>
+            </div>
+        </div>
+        
+        <div class="qris-container">
+            <h3 style="margin-bottom: 15px; color: #ffb86c;">QRIS (All Payment Methods)</h3>
+            <img src="https://files.catbox.moe/cogx5k.jpg" alt="QRIS Code">
+            <p style="margin-top: 10px;">Scan QR code untuk pembayaran</p>
+        </div>
+        
+        <div class="footer">
+            &copy; 2023 Anime Payment Gateway | Thank you for your support!
+        </div>
+    </div>
+    
+    <img src="https://i.imgur.com/JY5bHNG.png" alt="Anime Character" class="anime-character">
+    
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                alert('Nomor berhasil disalin: ' + text);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+        
+        // Add click event to all payment cards
+        document.querySelectorAll('.payment-card').forEach(card => {
+            card.addEventListener('click', function() {
+                const paymentInfo = this.querySelector('.payment-info').textContent;
+                const number = paymentInfo.match(/\d+/g)[0];
+                copyToClipboard(number);
+            });
+        });
+        
+        // Smooth scroll animation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
